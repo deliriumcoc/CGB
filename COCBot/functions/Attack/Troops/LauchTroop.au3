@@ -142,7 +142,13 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 									;TEMP FIX NEED TO IMPROVED... IF NO PIXELREDAREA DEPLOY IN A PRECISE POINT
 									;Local $pixelRandomDrop = $PixelRedArea[Round(Random(0, UBound($PixelRedArea) - 1))]
 									If Ubound($PixelRedArea) > 0 Then
-										Local $pixelRandomDrop = $PixelRedArea[Random(0, UBound($PixelRedArea) - 1,1)]
+                                        ;DW MOD START
+                                        If $DESideFound = True Or $iChkDeploySettings[$iMatchMode] = 0 Then
+                                            Local $pixelRandomDrop = $PixelRedArea[$DEEdge]
+                                        Else
+                                            Local $pixelRandomDrop = $PixelRedArea[Random(0, UBound($PixelRedArea) - 1,1)]
+                                        Endif
+                                        ;DW MOD END
 									Else
 										Local $pixelRandomDrop = [747,367] ;
 									EndIf
@@ -198,7 +204,9 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 	Else
 		For $i = 0 To UBound($listInfoDeploy) - 1
 			If (IsString($listInfoDeploy[$i][0]) And ($listInfoDeploy[$i][0] = "CC" Or $listInfoDeploy[$i][0] = "HEROES" Or $listInfoDeploy[$i][0] = "SPELL")) Then
-				If $DESideFound = True Then
+                ;DW MOD START
+                If $DESideFound = True Or $iChkDeploySettings[$iMatchMode] = 0 Then
+                ;DW MOD END
 					Local $RandomEdge = $Edges[$DEEdge]
 					Local $RandomXY = 2
 				Else
