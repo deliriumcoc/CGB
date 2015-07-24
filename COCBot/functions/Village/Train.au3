@@ -659,7 +659,9 @@ Func Train()
 		;end dark
 	EndIf
 	If $debugSetlog = 1 Then SetLog("---=====================END TRAIN =======================================---")
-	If $icmbTroopComp <> 8 And $isNormalBuild And $BarrackStatus[0] = False And $BarrackStatus[1] = False And $BarrackStatus[2] = False And $BarrackStatus[3] = False And Not $FirstStart Then
+    ;DW MOD START
+	If Not $fullArmy And $icmbTroopComp <> 8 And $isNormalBuild And $BarrackStatus[0] = False And $BarrackStatus[1] = False And $BarrackStatus[2] = False And $BarrackStatus[3] = False And Not $FirstStart Then
+    ;DW MOD END
 		If Not $isDarkBuild Or ($BarrackDarkStatus[0] = False And $BarrackDarkStatus[1] = False) Then
 			Train()
 			Return
