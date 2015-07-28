@@ -153,9 +153,9 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			, [$eWall, $nbSides, 3, 4, 1] _
 			, [$eArch, $nbSides, 2, 3, 0] _
 			, [$eWall, $nbSides, 4, 4, 1] _
+			, [$eBall, $nbSides, 1, 1, 0] _
 			, ["CC", 1, 1, 1, 1] _
 			, ["HEROES", 1, 2, 1, 0] _
-			, [$eBall, $nbSides, 1, 1, 0] _
 			, [$eMini, $nbSides, 1, 2, 0] _
 			, [$eMini, $nbSides, 2, 2, 0] _
 			, ["SPELL", 1, 1, 1, 1] _
@@ -191,15 +191,15 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			, [$eWall, $nbSides, 3, 4, 1] _
 			, [$eGobl, $nbSides, 1, 2, 0] _
 			, [$eWall, $nbSides, 4, 4, 1] _
+			, [$eBall, $nbSides, 1, 1, 0] _
 			, ["CC", 1, 1, 1, 1] _
+			, ["HEROES", 1, 2, 1, 1] _
 			, [$eHogs, $nbSides, 1, 1, 1] _
 			, [$eWiza, $nbSides, 1, 1, 0] _
-			, [$eBall, $nbSides, 1, 1, 0] _
 			, [$eMini, $nbSides, 1, 2, 0] _
 			, [$eMini, $nbSides, 2, 2, 0] _
 			, [$eArch, $nbSides, 2, 2, 0] _
 			, [$eGobl, $nbSides, 2, 2, 0] _
-			, ["HEROES", 1, 2, 1, 1] _
 			]
 	EndIf
 ;DW MOD END
