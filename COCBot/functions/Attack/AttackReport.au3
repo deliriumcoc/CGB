@@ -105,13 +105,21 @@ Func AttackReport()
 	If _ColorCheck(_GetPixelColor($aWonThreeStarAtkRprt[0], $aWonThreeStarAtkRprt[1], True), Hex($aWonThreeStarAtkRprt[2], 6), $aWonThreeStarAtkRprt[3]) Then $starsearned += 1
 	SetLog("Stars earned: " & $starsearned)
 
+	Local $HeroFilterUsed
+	If $LBHeroFilter = 1 Then
+		$HeroFilterUsed = " Y"
+	Else
+		$HeroFilterUsed = " N"
+	EndIf
+
 	Local $AtkLogTxt
 	$AtkLogTxt = "" & _NowTime(4) & "|"
-	$AtkLogTxt &= StringFormat("%5d", $TrophyCount) & "|"
+	$AtkLogTxt &= StringFormat("%4d", $TrophyCount) & "|"
 	$AtkLogTxt &= StringFormat("%6d", $SearchCount) & "|"
+	$AtkLogTxt &= $HeroFilterUsed & "|"
 	$AtkLogTxt &= StringFormat("%7d", $lootGold) & "|"
 	$AtkLogTxt &= StringFormat("%7d", $lootElixir) & "|"
-	$AtkLogTxt &= StringFormat("%7d", $lootDarkElixir) & "|"
+	$AtkLogTxt &= StringFormat("%4d", $lootDarkElixir) & "|"
 	$AtkLogTxt &= StringFormat("%3d", $lootTrophies) & "|"
 	$AtkLogTxt &= StringFormat("%1d", $starsearned) & "|"
 	$AtkLogTxt &= StringFormat("%6d", $BonusLeagueG) & "|"

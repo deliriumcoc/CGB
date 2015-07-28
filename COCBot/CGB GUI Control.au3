@@ -55,6 +55,7 @@ AtkLogHead()
 #include "GUI\CGB GUI Control Tab Notify.au3"
 #include "GUI\CGB GUI Control Tab Expert.au3"
 #include "GUI\CGB GUI Control Tab Stats.au3"
+#include "GUI\CGB GUI Control Tab Profiles.au3"
 
 Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 	Local $nNotifyCode = BitShift($wParam, 16)

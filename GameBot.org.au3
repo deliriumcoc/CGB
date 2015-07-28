@@ -127,6 +127,7 @@ Func runBot() ;Bot that runs everything in order
 			VillageReport()
 		     	If _Sleep(1000) Then Return
 				checkMainScreen(False)
+				ProfileSwitch()
 				If $OutOfGold = 1  And ($GoldCount >= $itxtRestartGold) Then  ; check if enough gold to begin searching again
 					$OutOfGold = 0  ; reset out of gold flag
 

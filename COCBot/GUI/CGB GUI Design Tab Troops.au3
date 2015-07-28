@@ -67,7 +67,7 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 		$txtTip = "Use this to boost your Barracks with GEMS! Use with caution!"
 		GUICtrlSetTip(-1, $txtTip)
 	$cmbBoostBarracks = GUICtrlCreateCombo("", $x + 150, $y, 35, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		GUICtrlSetData(-1, "0|1|2|3|4|5", "0")
+		GUICtrlSetData(-1, "0|1|2|3|4|5|99999999999999999999999", "0")
 		GUICtrlSetTip(-1, $txtTip)
 	$y += 25
 	GUICtrlCreateIcon ($pIconLib, $eIcnSpellFactoryBoost, $x, $y + 2, 16, 16)
@@ -75,7 +75,7 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 		$txtTip = "Use this to boost your Spell Factory with GEMS! Use with caution!"
 		GUICtrlSetTip(-1, $txtTip)
 	$cmbBoostSpellFactory = GUICtrlCreateCombo("", $x + 150, $y, 35, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		GUICtrlSetData(-1, "0|1|2|3|4|5", "0")
+		GUICtrlSetData(-1, "0|1|2|3|4|5|99999999999999999999999", "0")
 		GUICtrlSetTip(-1, $txtTip)
 	$y += 25
 	GUICtrlCreateIcon($pIconLib, $eIcnKing, $x, $y, 16, 16)

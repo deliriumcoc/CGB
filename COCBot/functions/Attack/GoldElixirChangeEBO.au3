@@ -66,7 +66,7 @@ Func GoldElixirChangeEBO()
 		EndIf
 	EndIf
 
-
+	Local $DisableHeroEBO = 0
 	;MAIN LOOP
 	While TimerDiff($iBegin) < $z
 		;HEALTH HEROES
@@ -74,7 +74,12 @@ Func GoldElixirChangeEBO()
 
 		;DE SPECIAL END EARLY
 		If $DESideFound = True And $DESideEB = 1 Then
-			If $dropQueen = True Or $dropKing = True Then DELow()
+			$DisableHeroEBO += 1
+			If $dropQueen = True Or $dropKing = True Then
+				DELow()
+			ElseIf $DisableHeroEBO = 1 Then
+				SetLog("Disabled DE EBO as Royals not used", $COLOR_GREEN)
+			EndIf
 			If $DarkLow = 1 Then ExitLoop
 		EndIf
 		If $checkKPower Or $checkQPower Or $DarkLow = 2 Then

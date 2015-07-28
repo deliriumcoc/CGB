@@ -101,6 +101,7 @@
 #include "functions\Other\DeleteFiles.au3"
 #include "functions\Other\CheckVersion.au3"
 #include "functions\Other\TrainClick.au3"
+#include "functions\Other\ProfileSwitch.au3"
 
 #include "functions\Pixels\_CaptureRegion.au3"
 #include "functions\Pixels\_ColorCheck.au3"

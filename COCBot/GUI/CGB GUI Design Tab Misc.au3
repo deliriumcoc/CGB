@@ -36,21 +36,6 @@ Local $x = 30, $y = 150
 			GUICtrlSetState (-1, $GUI_DISABLE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-Local $x = 30, $y = 205
-	$grpControls = GUICtrlCreateGroup("Profiles", $x - 20, $y - 20, 450, 65)
-		$lblProfile = GUICtrlCreateLabel("Current Profile:", $x, $y, -1, -1)
-		$cmbProfile = GUICtrlCreateCombo("01", $x + 75, $y - 5, 40, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		$txtTip = "Use this to switch to a different profile. Default: 01" & @CRLF & "Your profiles/configs can be found in:" & @CRLF &  $sProfilePath
-		GUICtrlSetTip(-1, $txtTip)
-		GUICtrlSetData(-1, "02|03|04|05|06", "01")
-		GUICtrlSetOnEvent(-1, "cmbProfile")
-		$txtVillageName = GUICtrlCreateInput("MyVillage", $x + 120, $y - 4, 90, 18, BitOR($SS_CENTER, $ES_AUTOHSCROLL))
-		GUICtrlSetLimit (-1, 20, 0)
-		GUICtrlSetFont(-1, 9, 800, 1)
-		GUICtrlSetTip(-1, "Your village's name")
-		GUICtrlSetOnEvent(-1, "txtVillageName")
-	GUICtrlCreateGroup("", -99, -99, 1, 1)
-
 	Local $x = 30, $y = 275
 	$grpMisc = GUICtrlCreateGroup("Rearm, Collect, Clear", $x -20, $y - 20 , 225, 100)
 	;$grpTraps = GUICtrlCreateGroup("Traps, X-bows && Infernos", $x -20, $y - 20 , 225, 55)

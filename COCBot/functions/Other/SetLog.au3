@@ -33,5 +33,5 @@ EndFunc   ;==>SetAtkLog
 Func AtkLogHead()
 	SetAtkLog(_PadStringCenter(" ATTACK LOG ", 71, "="), $COLOR_BLACK, "MS Shell Dlg", 8.5)
 	SetAtkLog("                   --------  LOOT --------       ----- BONUS ------   ")
-	SetAtkLog(" TIME|TROP.|SEARCH|   GOLD| ELIXIR|DARK EL|TR.|S|  GOLD|ELIXIR|  DE|L.")
+	SetAtkLog(" TIME|TROP|SEARCH|HF|   GOLD| ELIXIR|  DE|TR.|S|  GOLD|ELIXIR|  DE|L.")
 EndFunc   ;==>AtkLogHead

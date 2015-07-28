@@ -4,6 +4,9 @@
 		PrepareAttack(True)
 		$King = 0
 		$Queen = 0
+		If $LBHeroFilter = 1 Then
+			RevertRoyalFilter()
+		EndIf
 		If $LBAQFilter = 1 Then ;Checking for aq if aq filter enabled.
 			$Queen = -1
 			For $i = 0 To 8
@@ -26,9 +29,6 @@
 			$LBHeroFilter = 1
 		Else
 			SetLog("Live Base Normal Mode Enabled", $COLOR_BLUE)
-			If $LBHeroFilter = 1 Then
-				RevertRoyalFilter()
-			EndIf
 			$LBHeroFilter = 0
 		EndIf
 

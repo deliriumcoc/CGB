@@ -181,11 +181,15 @@ Func DELow()
 				EndIf
 			EndIf
 			If $DEEndAq = 0 And $DEEndBk = 0 And $DEEndOneStar = 0 Then
+				$DarkLow = 1
 				SetLog("Low De. De = ( " & $DarkE & " ). Return to protect Royals.  Returning immediately", $COLOR_GREEN)
 				Return False
 			EndIf
+		Else
+			SetLog("De EBO Check. Second DE check failed Read as De = ( " & $DarkE & " )", $COLOR_GREEN)
 		EndIf
 	Else
+		SetLog("De EBO Check. De = ( " & $DarkE & " ) waiting for " & Round((Number($searchDark) * (Number($DELowEndMin) / 100)),0) & " Before exiting", $COLOR_GREEN)
 		$DarkLow = 0
 	EndIf
 EndFunc   ;==>DELow

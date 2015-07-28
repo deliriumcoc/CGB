@@ -11,7 +11,7 @@ Func dropHeroes($x, $y, $KingSlot = -1, $QueenSlot = -1) ;Drops for king and que
 	If $QueenSlot <> -1 And (($iMatchMode <> $DB And $iMatchMode <> $LB) Or $QueenAttack[$iMatchMode] = 1) Then
 		$dropQueen = True
 	EndIf
-	If $dropKing Then
+	If $dropKing = True Then
 		SetLog("Dropping King", $COLOR_BLUE)
 		Click(GetXPosOfArmySlot($KingSlot, 68), 595,1,0,"#0092") ;Select King
 		If _Sleep(500) Then Return
@@ -21,7 +21,7 @@ Func dropHeroes($x, $y, $KingSlot = -1, $QueenSlot = -1) ;Drops for king and que
 
 	If _Sleep(300) Then Return
 
-	If $dropQueen Then
+	If $dropQueen = True Then
 		SetLog("Dropping Queen", $COLOR_BLUE)
 		Click(GetXPosOfArmySlot($QueenSlot, 68), 595,1,0,"#0094") ;Select Queen
 		If _Sleep(500) Then Return

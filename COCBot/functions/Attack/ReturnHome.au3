@@ -18,7 +18,7 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 	Local $counter = 0
 	Local $hBitmap_Scaled
 
-	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And ($dropQueen Or $dropKing)Then
+	If $DisableOtherEBO = 1 And $DESideFound = True And $DESideEB = 1 And ($dropQueen = True Or $dropKing = True) Then
 		SaveandDisableEBO()
 		SetLog("Disabling Normal End Battle Options", $COLOR_GREEN)
 	EndIf
@@ -44,15 +44,15 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 		EndIf
 	EndIf
 
-	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And ($dropQueen Or $dropKing) Then
+	If $DisableOtherEBO = 1 And $DESideFound = True And $DESideEB = 1 And ($dropQueen = True Or $dropKing = True) Then
 		RevertEBO()
 	EndIf
 
 	$checkKPower = False
 	$checkQPower = False
-	
+
 	If $OptTrophyMode = 1 And _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 9 Then $FirstStart = True ;reset barracks upon return when TH sniping w/custom army
-	
+
 	SetLog("Returning Home", $COLOR_BLUE)
 	If $RunState = False Then Return
 	ClickP($aSurrenderButton, 1, 0, "#0099") ;Click Surrender
