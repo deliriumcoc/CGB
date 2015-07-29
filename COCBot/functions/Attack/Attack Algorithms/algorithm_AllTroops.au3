@@ -122,6 +122,9 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		Case 0 ;Single sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on a single side", $COLOR_BLUE)
 			$nbSides = 1
+            ;DW MOD START
+			GetDEEdge()
+			;DW MOD END
 		Case 1 ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on two sides", $COLOR_BLUE)
 			$nbSides = 2
@@ -139,24 +142,30 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	If ($nbSides = 0) Then Return
 	If _Sleep(1000) Then Return
 
+;DW MOD START
 	If $DESideFound = True Then   ; Customise DE side wave deployment here
-		Local $listInfoDeploy[14][5] = [[$eGiant, $nbSides, 1, 1, 0] _
-			, [$eWall, $nbSides, 1, 1, 1] _
+		Local $listInfoDeploy[19][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+			, [$eWall, $nbSides, 1, 4, 1] _
 			, [$eBarb, $nbSides, 1, 2, 0] _
+			, [$eWall, $nbSides, 2, 4, 1] _
 			, [$eArch, $nbSides, 1, 3, 0] _
 			, [$eBarb, $nbSides, 2, 2, 0] _
+			, [$eWall, $nbSides, 3, 4, 1] _
 			, [$eArch, $nbSides, 2, 3, 0] _
+			, [$eWall, $nbSides, 4, 4, 1] _
+			, [$eBall, $nbSides, 1, 1, 0] _
 			, ["CC", 1, 1, 1, 1] _
 			, ["HEROES", 1, 2, 1, 0] _
+			, [$eMini, $nbSides, 1, 2, 0] _
+			, [$eMini, $nbSides, 2, 2, 0] _
 			, ["SPELL", 1, 1, 1, 1] _
 			, [$eHogs, $nbSides, 1, 1, 1] _
 			, [$eWiza, $nbSides, 1, 1, 0] _
-			, [$eMini, $nbSides, 1, 1, 0] _
 			, [$eArch, $nbSides, 3, 3, 0] _
 			, [$eGobl, $nbSides, 1, 1, 0] _
 			]
-	Else
-		Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+	ElseIf $nbSides > 1 Then
+		Local $listInfoDeploy[15][5] = [[$eGiant, $nbSides, 1, 1, 0] _
 			, [$eBarb, $nbSides, 1, 2, 0] _
 			, [$eWall, $nbSides, 1, 1, 1] _
 			, [$eArch, $nbSides, 1, 2, 0] _
@@ -165,12 +174,35 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			, ["CC", 1, 1, 1, 1] _
 			, [$eHogs, $nbSides, 1, 1, 1] _
 			, [$eWiza, $nbSides, 1, 1, 0] _
-			, [$eMini, $nbSides, 1, 1, 0] _
+			, [$eBall, $nbSides, 1, 1, 0] _
+			, [$eMini, $nbSides, 1, 2, 0] _
+			, [$eMini, $nbSides, 2, 2, 0] _
 			, [$eArch, $nbSides, 2, 2, 0] _
 			, [$eGobl, $nbSides, 2, 2, 0] _
 			, ["HEROES", 1, 2, 1, 1] _
 			]
+	Else ;1-side deploy settings
+		Local $listInfoDeploy[18][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+			, [$eBarb, $nbSides, 1, 2, 0] _
+			, [$eWall, $nbSides, 1, 4, 1] _
+			, [$eArch, $nbSides, 1, 2, 0] _
+			, [$eWall, $nbSides, 2, 4, 1] _
+			, [$eBarb, $nbSides, 2, 2, 0] _
+			, [$eWall, $nbSides, 3, 4, 1] _
+			, [$eGobl, $nbSides, 1, 2, 0] _
+			, [$eWall, $nbSides, 4, 4, 1] _
+			, [$eBall, $nbSides, 1, 1, 0] _
+			, ["CC", 1, 1, 1, 1] _
+			, ["HEROES", 1, 2, 1, 1] _
+			, [$eHogs, $nbSides, 1, 1, 1] _
+			, [$eWiza, $nbSides, 1, 1, 0] _
+			, [$eMini, $nbSides, 1, 2, 0] _
+			, [$eMini, $nbSides, 2, 2, 0] _
+			, [$eArch, $nbSides, 2, 2, 0] _
+			, [$eGobl, $nbSides, 2, 2, 0] _
+			]
 	EndIf
+;DW MOD END
 
 	LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 
