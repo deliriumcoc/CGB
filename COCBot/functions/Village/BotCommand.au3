@@ -104,6 +104,10 @@ Func BotCommand()
 					If _Sleep(500) Then Return
 					Shutdown($SD_REBOOT ) ; Reboot
 					Return True
+                Case 4
+					If $Runstate = True Then btnStop()
+					If _Sleep(500) Then Return
+
 			EndSwitch
 		EndIf
 	EndIf
