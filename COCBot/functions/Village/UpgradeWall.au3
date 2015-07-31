@@ -4,55 +4,62 @@ Func UpgradeWall()
 
 	If GUICtrlRead($chkWalls) = $GUI_CHECKED Then
 		If $FreeBuilder > 0 Then
-			SetLog("Checking Upgrade Walls", $COLOR_BLUE)
-			ClickP($aTopLeftClient,1,0,"#0313") ; click away
-			$itxtWallMinGold = GUICtrlRead($txtWallMinGold)
-			$itxtWallMinElixir = GUICtrlRead($txtWallMinElixir)
+            Local $wallsAttempted = 0;
+            While $wallsAttempted < 5
+                $wallsAttempted = $wallsAttempted + 1
+                SetLog("Checking Upgrade Walls", $COLOR_BLUE)
+                ClickP($aTopLeftClient,1,0,"#0313") ; click away
+                $itxtWallMinGold = GUICtrlRead($txtWallMinGold)
+                $itxtWallMinElixir = GUICtrlRead($txtWallMinElixir)
 
-			Local $MinWallGold = Number($GoldCount - $Wallcost) > Number($itxtWallMinGold) ; Check if enough Gold
-			Local $MinWallElixir = Number($ElixirCount - $Wallcost) > Number($itxtWallMinElixir) ; Check if enough Elixir
+                Local $MinWallGold = Number($GoldCount - ($Wallcost * ($wallsAttempted + 1))) > Number($itxtWallMinGold) ; Check if enough Gold
+                Local $MinWallElixir = Number($ElixirCount - ($Wallcost * ($wallsAttempted + 1))) > Number($itxtWallMinElixir) ; Check if enough Elixir
 
-			If GUICtrlRead($UseGold) = $GUI_CHECKED Then
-				$iUseStorage = 1
-			ElseIf GUICtrlRead($UseElixir) = $GUI_CHECKED Then
-				$iUseStorage = 2
-			ElseIf GUICtrlRead($UseElixirGold) = $GUI_CHECKED Then
-				$iUseStorage = 3
-			EndIf
+                If GUICtrlRead($UseGold) = $GUI_CHECKED Then
+                    $iUseStorage = 1
+                ElseIf GUICtrlRead($UseElixir) = $GUI_CHECKED Then
+                    $iUseStorage = 2
+                ElseIf GUICtrlRead($UseElixirGold) = $GUI_CHECKED Then
+                    $iUseStorage = 3
+                EndIf
 
-			Switch $iUseStorage
-				Case 1
-					If $MinWallGold Then
-						SetLog("Upgrading Wall using Gold", $COLOR_GREEN)
-						If CheckWall() Then UpgradeWallGold()
-					Else
-						SetLog("Gold is below minimum, Skipping Upgrade", $COLOR_RED)
-					EndIf
-				Case 2
-					If $MinWallElixir Then
-						Setlog("Upgrading Wall using Elixir", $COLOR_GREEN)
-						If CheckWall() Then UpgradeWallElixir()
-					Else
-						Setlog("Elixir is below minimum, Skipping Upgrade", $COLOR_RED)
-					EndIf
-				Case 3
-					If $MinWallElixir Then
-						SetLog("Upgrading Wall using Elixir", $COLOR_GREEN)
-						If CheckWall() And Not UpgradeWallElixir() Then
-							SetLog("Upgrade with Elixir failed, attempt to upgrade using Gold", $COLOR_RED)
-							UpgradeWallGold()
-						EndIf
-					Else
-						SetLog("Elixir is below minimum, attempt to upgrade using Gold", $COLOR_RED)
-						If $MinWallGold Then
-							If CheckWall() Then UpgradeWallGold()
-						Else
-							Setlog("Gold is below minimum, Skipping Upgrade", $COLOR_RED)
-						EndIf
-					EndIf
-			EndSwitch
-			ClickP($aTopLeftClient,1,0,"#0314") ; click away
-			Click(820, 40,1,0,"#0315") ; Close Builder/Shop if open by accident
+                Switch $iUseStorage
+                    Case 1
+                        If $MinWallGold Then
+                            SetLog("Upgrading Wall using Gold", $COLOR_GREEN)
+                            If CheckWall() Then UpgradeWallGold()
+                        Else
+                            SetLog("Gold is below minimum, Skipping Upgrade", $COLOR_RED)
+                            $wallsAttempted = 5
+                        EndIf
+                    Case 2
+                        If $MinWallElixir Then
+                            Setlog("Upgrading Wall using Elixir", $COLOR_GREEN)
+                            If CheckWall() Then UpgradeWallElixir()
+                        Else
+                            Setlog("Elixir is below minimum, Skipping Upgrade", $COLOR_RED)
+                            $wallsAttempted = 5
+                        EndIf
+                    Case 3
+                        If $MinWallElixir Then
+                            SetLog("Upgrading Wall using Elixir", $COLOR_GREEN)
+                            If CheckWall() And Not UpgradeWallElixir() Then
+                                SetLog("Upgrade with Elixir failed, attempt to upgrade using Gold", $COLOR_RED)
+                                UpgradeWallGold()
+                            EndIf
+                        Else
+                            SetLog("Elixir is below minimum, attempt to upgrade using Gold", $COLOR_RED)
+                            If $MinWallGold Then
+                                If CheckWall() Then UpgradeWallGold()
+                            Else
+                                Setlog("Gold is below minimum, Skipping Upgrade", $COLOR_RED)
+                                $wallsAttempted = 5
+                            EndIf
+                        EndIf
+                EndSwitch
+                ClickP($aTopLeftClient,1,0,"#0314") ; click away
+                Click(820, 40,1,0,"#0315") ; Close Builder/Shop if open by accident
+            Wend
 		Else
 			SetLog("No free builder, Upgrade Walls skipped..", $COLOR_RED)
 		EndIf
